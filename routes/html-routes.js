@@ -1,33 +1,21 @@
-// *********************************************************************************
-// html-routes.js - this file offers a set of routes for sending users to the various html pages
-// *********************************************************************************
 
-// Dependencies
-// =============================================================
-var path = require("path");
+var express = require("express");
 
-// Routes
-// =============================================================
-module.exports = function(app) {
+var app = express();
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
+var path = require('path')
 
-  // index route loads view.html
-  // Serve index.handlebars to the root route.
-  // app.get("/", function(req, res) {
-  //   connection.query("SELECT * FROM quotes;", function(err, data) {
-  //     if (err) {
-  //       return res.status(500).end();
-  //     }
-  //
-  //     res.render("index", { quotes: data });
-  //   });
-  // });
+var hbs = require('express-handlebars')
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/test-index.html"));
-});
+var bodyParser = require ('body-parser')
 
 
+app.get('/', function(req, res){
 
-};
+
+res.render("index", {title: 'Hey Yo' }  )
+
+})
+
+// Export routes for server.js to use.
+module.exports = app;

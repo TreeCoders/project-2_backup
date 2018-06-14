@@ -6,6 +6,7 @@ var sequelize = require("../config/connection.js");
 
 module.exports = (sequelize, DataTypes) => {
   var Post = sequelize.define('Post', {
+
     author: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, { timestamps: true});
+
 
   Post.associate = function(models) {
     // associations can be defined here
