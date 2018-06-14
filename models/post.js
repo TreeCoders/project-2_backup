@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     message: DataTypes.STRING,
     url: DataTypes.STRING,
     likes: DataTypes.INTEGER,
-    rating: DataTypes.FLOAT
+    rating: DataTypes.FLOAT,
     postLocation: DataTypes.STRING,
   }, {});
   Post.associate = function(models) {
