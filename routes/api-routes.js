@@ -3,19 +3,50 @@
 // ROUTING
 // ===============================================================================
 
-var Models = require("../models/api/");
-var User = Models.user
-var Post = Models.Post;
+const db = require("../models/api");
+const Models = require("../models/api/");
+const User = Models.user
+const Post = Models.Post;
 
 
 module.exports = function(app) {
 
-  // Get all books
-  app.get("/api/all", function(req, res) {
+  // Get all posts
+  app.get("/api/posts", function(req, res) {
     Post.findAll({}).then(function(results) {
       res.json(results);
     });
   });
+
+
+
+// **** Queries of Posts *****
+// Homepage
+  app.get("/", function(req, res) {
+    db.Post.findAll({
+      limit:10
+    }).then(function(dbPost) {
+      res.render("index", { post: dbPost });
+    });
+  });
+
+
+// ***** POST Requests for creating new post
+app.post("/api/posts", (req, res) => {
+  console.log(req.body);
+  db.Post.create({
+    // AUTHOR THIS IS FOR TESTING ONLY
+    author: "Captain America",
+    title: req.body.title,
+    message: req.body.message,
+    createdAt: new Date(),
+    updatedAt: new Date()
+
+    // category: req.body.category
+  }).then( dbPost => {
+    res.json(dbPost)
+  });
+});
 
 
 //******************************************************************************************************** */
