@@ -6,9 +6,16 @@
 let express = require("express");
 let bodyParser = require("body-parser");
 
+// Dependencies for GoogleOAuth
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 // Requiring our models for syncing
-let db = require("./models");
+let db = require("./models/api/");
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -27,7 +34,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -44,7 +50,22 @@ app.use(express.static("public"));
 
 require("./routes/api-Routes")(app);
 require("./routes/html-Routes")(app);
+require('./config/passport')(passport);
 
+
+//Gooogle OAuth initilazing
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({secret: 'anystringoftext',
+saveUninitialized: true,
+resave: true}));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require("./routes/SignIn-routes.js")(app, passport);
 // =============================================================================
 // LISTENER
 // The below code effectively "starts" our server
@@ -52,7 +73,9 @@ require("./routes/html-Routes")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+console.log("yay connected to db")
+});
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
