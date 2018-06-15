@@ -5,6 +5,9 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var connection = require("../config/connection.js")
+var db = require("../models/api");
+
 
 // Routes
 // =============================================================
@@ -14,19 +17,27 @@ module.exports = function(app) {
 
   // index route loads view.html
   // Serve index.handlebars to the root route.
-  // app.get("/", function(req, res) {
-  //   connection.query("SELECT * FROM quotes;", function(err, data) {
-  //     if (err) {
-  //       return res.status(500).end();
-  //     }
-  //
-  //     res.render("index", { quotes: data });
-  //   });
+  app.get("/", function(req, res) {
+    // connection.query("SELECT * FROM quotes;", function(err, data) {
+    //   if (err) {
+    //     return res.status(500).end();
+    //   }
+    db.Post.findAll({}).then(function(dbPost) {
+      // res.json(dbPost);
+      // Render to handlebars
+      res.render("index", { post: dbPost });
+
+    });
+
+
+      // res.render("index", { quotes: data });
+    });
   // });
 
 app.get("/", function(req, res) {
   res.render('index')
 });
+
 
 
 

@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     postLocation: {
       type: DataTypes.STRING
     }
-  }, { timestamps: true});
+  }, {timestamps: true
+});
 
   Post.associate = function(models) {
     // associations can be defined here

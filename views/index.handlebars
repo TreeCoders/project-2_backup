@@ -7,9 +7,15 @@
         </h4>
   </a>
   <div class="right menu">
+
     <a href= "/auth/google" class="item">
       <i  class="google large icon"></i>
           Sign In
+
+    <a class="item">
+      <i class="google large icon"></i>
+          Sign-in
+
     </a>
   </div>
 </div>
@@ -133,48 +139,27 @@
       <div class="ui segment">
 
         <!--  **** TEST  ***** -->
+        {{#each post}}
         <div class="ui unstackable items">
           <div class="item">
             <div class="image">
               <img src="/images/wireframe/image.png">
             </div>
             <div class="content">
-              <a class="header">Header</a>
+              <a class="header">{{this.title}}</a>
               <div class="meta">
-                <span>Description</span>
+                <span>by: {{this.author}}</span>
               </div>
               <div class="description">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p> {{this.message}} </p>
               </div>
               <div class="extra">
                 Additional Details
               </div>
             </div>
           </div>
-          <div class="item">
-            <div class="image">
-              <img src="/images/wireframe/image.png">
-            </div>
-            <div class="content">
-              <a class="header">Header</a>
-              <div class="meta">
-                <span>Description</span>
-              </div>
-              <div class="description">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div class="extra">
-                Additional Details
-              </div>
-            </div>
-          </div>
-        </div>
+
+          {{/each}}
 
         <!-- ***** END TEST -->
       </div>
