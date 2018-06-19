@@ -24,7 +24,8 @@ module.exports = function(app) {
 // Homepage
   app.get("/", function(req, res) {
     db.Post.findAll({
-      limit:10
+      limit:10,
+      order: [["createdAt", "DESC"]]
     }).then(function(dbPost) {
       res.render("index", { post: dbPost });
     });
@@ -39,6 +40,7 @@ app.post("/api/posts", (req, res) => {
     author: "Captain America",
     title: req.body.title,
     message: req.body.message,
+    url: req.body.imageURL,
     createdAt: new Date(),
     updatedAt: new Date()
 

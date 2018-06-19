@@ -1,5 +1,11 @@
 $(document).ready( () => {
 
+  // Fill in modal
+  $(".articleTitle").on("click", (event) => {
+
+  });
+
+// CREATE POST
   $("#create-post").on("submit", (event) => {
 
     console.log("IM IN SUBMIT");
@@ -7,7 +13,8 @@ $(document).ready( () => {
 
     let newPost = {
       title: $("#title-input").val().trim(),
-      message: $("#message-input").val().trim()
+      message: $("#message-input").val().trim(),
+      imageURL: $("#url-input").val().trim()
     };
 
     $.ajax("api/posts", {
@@ -20,4 +27,5 @@ $(document).ready( () => {
         location.reload();
       });
   });
+
 });

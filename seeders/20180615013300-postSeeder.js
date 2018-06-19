@@ -11,7 +11,7 @@ module.exports = {
         author: 'John Doe',
         title: "false",
         message: "dude",
-        url: "google.com",
+        url: "https://www.at-languagesolutions.com/en/wp-content/uploads/2016/06/http-1.jpg",
         likes: 1,
         rating: 5.6,
         createdAt: new Date(),

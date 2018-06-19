@@ -1,5 +1,5 @@
 <!--  NAV -->
-<div class="ui stackable borderless menu">
+<div class="ui inverted stackable borderless menu">
   <a class="item">
     <h4>
     <i class="hand lizard big icon"></i>
@@ -21,13 +21,13 @@
 </div>
 
 
-<div class="ui grid container">
+<div class="ui stackable grid container">
   <div class="row">
     <!-- MAIN -->
     <main class="ui container twelve wide column">
 
       <!-- Header/Banner -->
-      <div class="ui segment">
+      <div class="ui segment inverted">
         <h2 class="ui header centered">
           Some Header
         </h2>
@@ -52,7 +52,7 @@
           <!-- Search Database QUESTION: How to query for ANY keyword?-->
           <div class="column right aligned" >
             <div class="ui transparent icon input">
-              <input type="text" placeholder="Search users...">
+              <input type="text" placeholder="">
               <i class="search link icon"></i>
             </div>
           </div>
@@ -62,7 +62,8 @@
         <!-- 2nd Row - Filters and Sort -->
         <div class="row">
           <!-- Filter by Location Buttons -->
-          <div class="column">
+          <!-- <div class="column">
+
             <div class="ui text menu">
 
             <div class="header item">
@@ -78,7 +79,6 @@
               </div>
             </div>
 
-            <!-- IF US is selected country, show state dropdown. ELSE hide it -->
             <div class="ui compact selection dropdown">
               <i class="dropdown icon"></i>
               <div class="text">State</div>
@@ -88,9 +88,8 @@
                 <div class="item">C</div>
               </div>
             </div>
-
           </div>
-        </div>
+        </div> -->
 
 
           <!-- Sort by Buttons -->
@@ -104,8 +103,8 @@
                 <i class="dropdown icon"></i>
                 <div class="text">Date</div>
                 <div class="menu">
-                  <div class="item">Descending</div>
-                  <div class="item">Ascending</div>
+                  <div class="item" data-value="DESC">Newer</div>
+                  <div class="item">Older</div>
                 </div>
               </div>
 
@@ -113,8 +112,8 @@
                 <i class="dropdown icon"></i>
                 <div class="text">Popularity</div>
                 <div class="menu">
-                  <div class="item">Descending</div>
-                  <div class="item">Ascending</div>
+                  <div class="item">Most Likes</div>
+                  <div class="item">Least Likes</div>
                 </div>
               </div>
 
@@ -122,8 +121,8 @@
                 <i class="dropdown icon"></i>
                 <div class="text">Rating</div>
                 <div class="menu">
-                  <div class="item">Descending</div>
-                  <div class="item">Ascending</div>
+                  <div class="item">Highest</div>
+                  <div class="item">Lowest</div>
                 </div>
               </div>
             </div>
@@ -143,18 +142,18 @@
         <div class="ui unstackable items">
           <div class="item">
             <div class="image">
-              <img src="/images/wireframe/image.png">
+              <img src={{this.url}}>
             </div>
             <div class="content">
-              <a class="header">{{this.title}}</a>
+              <a class="header articleTitle">{{this.title}}</a>
               <div class="meta">
-                <span>by: {{this.author}}</span>
+                <span class="getAuthor">by: {{this.author}}</span>
               </div>
               <div class="description">
                 <p> {{this.message}} </p>
               </div>
               <div class="extra">
-                Additional Details
+                {{this.createdAt}}
               </div>
             </div>
           </div>
@@ -199,6 +198,12 @@
           Donate
         </div>
       </div>
+      <div class="ui segment">
+        <div class="ui fluid basic button" id="manageUsers">
+          <i class="ui icon user outlined"></i>
+          Manage Users
+        </div>
+      </div>
     </aside>
   </div>  <!-- END ROW -->
 </div>  <!-- END Grid -->
@@ -211,7 +216,7 @@
 
     <!--  MODALS  -->
     <!--  MODAL 1 - Submit Post -->
-    <div class="ui modal longer">
+    <div class="ui modal longer createPost">
       <i class="close icon"></i>
       <div class="header">
         Create Post
@@ -245,15 +250,72 @@
             <textarea id="message-input"></textarea>
           </div>
           <div class="field">
-            <label>URL</label>
+            <label>Image URL:</label>
             <input type="text" id="url-input">
           </div>
 
             <!-- <div class="ui button">Cancel</div> -->
-          <button class="ui basic button" type"submit">Submit</button>
+          <button class="ui basic button" type="submit">Submit</button>
         </form>
       </div>
+    </div>
+
+    <!--  MODAL 2 - View Article Post -->
+
+    <div class="ui items  modal longer segment viewArticle">
+      <div class="item container">
+        <div class="content">
+          <div class="header">
+            Header
+          </div>
+          <div class="meta">
+            <span class="author-meta">Me</span>
+            <span class="date-meta">1/1/1</span>
+          </div>
+          <div class="ui text description">
+            <p>A long ass post</p>
+            <p>Yo yo yo</p>
+            <p>Tesssst</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
+    <!-- Modal 4 - -->
+
+    <div class="ui items modal longer segment modalUsers">
+      <table class="ui celled striped table">
+        <thead>
+          <tr><th colspan="3">
+            Users
+          </th>
+        </tr>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Header</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+            <td class="collapsing">
+              <i class="folder icon"></i> node_modules
+            </td>
+            <td>Initial commit</td>
+            <td class="right aligned collapsing">10 hours ago</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form class="ui form" id="create-user">
+        <div class="field">
+          <label>Create User:</label>
+          <input type="text" id="username-input">
+        </div>
+        <button class="ui basic button" type="submit">Submit</button>
+
+    </form>
 
     </div>
